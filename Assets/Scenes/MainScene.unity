@@ -521,5 +521,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57fdb98ede15786428092d0e7461d0c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.1
+  player: {fileID: 11400000, guid: 345038f1f1f95dd4bb134890f6a5f152, type: 2}
   upForce: 500
+  speed: 0
