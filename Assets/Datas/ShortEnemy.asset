@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 315a6dbcee35e084c9481e475e3fdcf9, type: 3}
   m_Name: ShortEnemy
   m_EditorClassIdentifier: 
-  enemyName: 
+  enemyName: "\u8FD1\u8DDD\u96E2\u6575"
   maxHp: 10
-  speed: 10
+  speed: 1
   normalA: 10
-  rangeA: 50
-  powerA: 10
+  rangeA: 0
+  powerA: 0

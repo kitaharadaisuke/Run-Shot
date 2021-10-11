@@ -8,12 +8,12 @@ public class PlayerData : ScriptableObject
     public int MaxHP { get { return maxHp; } }
 
     //ビームゲージ
-    [SerializeField] int bG = 100;
-    public int BG { get { return bG; } }
+    [SerializeField] float bG = 100;
+    public float BG { get { return bG; } }
 
     //スタミナ
-    [SerializeField] int stamina = 100;
-    public int Stamina { get { return stamina; } }
+    [SerializeField] float stamina = 100;
+    public float Stamina { get { return stamina; } }
 
     //速度
     [SerializeField] int speed = 1;
