@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
 
     int speed;
+    int hp;
     float stamina;
     float bg;
     float inputH;
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         speed = player.Speed;
+        hp = player.MaxHP;
         stamina = player.Stamina;
         bg = player.BG;
     }
