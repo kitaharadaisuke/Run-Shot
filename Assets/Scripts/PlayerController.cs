@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 
     int speed;
     float stamina;
+    float bg;
     float inputH;
     float inputV;
 
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         speed = player.Speed;
         stamina = player.Stamina;
+        bg = player.BG;
     }
 
     void Update()
@@ -46,12 +48,22 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(Vector3.up * upForce);
         }
 
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            bg -= 2;
+        }
+
         //スタミナ消費
         if (speed == 2)
         {
             if (stamina >= 0)
             {
                 stamina -= 0.1f;
+            }
+            //ビームゲージ回復
+            if (bg < 100)
+            {
+                bg += 0.1f;
             }
         }
         else
@@ -61,6 +73,5 @@ public class PlayerController : MonoBehaviour
                 stamina += 0.1f;
             }
         }
-        Debug.Log(stamina);
     }
 }
