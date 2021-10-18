@@ -17,7 +17,26 @@ public class EnemyController : MonoBehaviour
     {
         if(hp <= 0)
         {
-            Destroy(this.gameObject);
+            StartCoroutine("EnemyDead");
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            hp -= 5;
+        }
+    }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        hp -= 30;
+    }
+
+    IEnumerator EnemyDead()
+    {
+        this.gameObject.SetActive(false);
+        yield return new WaitForSeconds(3.0f);
     }
 }
