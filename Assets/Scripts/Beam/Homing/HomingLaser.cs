@@ -20,11 +20,13 @@ public class HomingLaser : MonoBehaviour
         target = enemyObj.transform;
         position = transform.position;
         rb = this.GetComponent<Rigidbody>();
-        velocity = new Vector3(Random.Range(-5.0f, 5.0f), Random.Range(-3.0f, 3.0f), 0);
+        //撃ちだし角度
+        velocity = new Vector3(Random.Range(-3.0f, 3.0f), Random.Range(-3.0f, 3.0f), 0);
     }
 
     void Update()
     {
+        //ホーミング関連
         acceleration = Vector3.zero;
         Vector3 diff = target.position - transform.position;
         acceleration += (diff - velocity * period) * 2f / (period * period);

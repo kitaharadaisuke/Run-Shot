@@ -5035,9 +5035,8 @@ GameObject:
   - component: {fileID: 555699673}
   - component: {fileID: 555699672}
   - component: {fileID: 555699671}
-  - component: {fileID: 555699670}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5057,20 +5056,6 @@ Transform:
   m_Father: {fileID: 1668229855}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &555699670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 555699668}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89b63211d563fee4d9aa27119d05f172, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 2662838095939883322, guid: c4c782d93daff5449aed24d6081ed5e2, type: 3}
-  Raser: {fileID: 1914952846}
 --- !u!65 &555699671
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5079,7 +5064,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 555699668}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -14940,6 +14925,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1193791105}
+  - component: {fileID: 1193791106}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -14963,6 +14949,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1193791106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193791104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 944c012492247c34bbb905feef519d3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1296960414
 GameObject:
   m_ObjectHideFlags: 0
@@ -24730,6 +24728,7 @@ GameObject:
   - component: {fileID: 1668229852}
   - component: {fileID: 1668229851}
   - component: {fileID: 1668229856}
+  - component: {fileID: 1668229857}
   m_Layer: 0
   m_Name: PlayerObj
   m_TagString: Untagged
@@ -24848,6 +24847,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 11400000, guid: 345038f1f1f95dd4bb134890f6a5f152, type: 2}
   upForce: 500
+--- !u!114 &1668229857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668229850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89b63211d563fee4d9aa27119d05f172, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 2662838095939883322, guid: c4c782d93daff5449aed24d6081ed5e2, type: 3}
+  raser: {fileID: 1914952846}
+  muzzle: {fileID: 555699669}
 --- !u!1 &1823553249
 GameObject:
   m_ObjectHideFlags: 0
