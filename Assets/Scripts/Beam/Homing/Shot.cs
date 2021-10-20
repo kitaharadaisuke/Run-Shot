@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Shot : MonoBehaviour
 {
-    public GameObject bullet;
-    public GameObject Raser;
+    [SerializeField] GameObject bullet;
+    [SerializeField] GameObject raser;
+    [SerializeField] Transform muzzle;
     GameObject[] enemyObj;
 
     void Update()
@@ -18,6 +19,7 @@ public class Shot : MonoBehaviour
             {
                 // íeä€ÇÃï°êª
                 GameObject bullets = Instantiate(bullet) as GameObject;
+                bullets.transform.position = muzzle.position;
             }
         }
 
@@ -29,8 +31,8 @@ public class Shot : MonoBehaviour
 
     IEnumerator StraightBeam()
     {
-        Raser.SetActive(true);
+        raser.SetActive(true);
         yield return new WaitForSeconds(2.0f);
-        Raser.SetActive(false);
+        raser.SetActive(false);
     }
 }
