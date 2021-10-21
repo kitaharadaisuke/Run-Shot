@@ -7,6 +7,9 @@ TagManager:
   - Bullet
   - Enemy
   - Ground
+  - Straight
+  - Diffusion
+  - Dome
   layers:
   - Default
   - TransparentFX

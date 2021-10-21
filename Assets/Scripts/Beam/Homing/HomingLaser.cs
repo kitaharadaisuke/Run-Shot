@@ -49,7 +49,7 @@ public class HomingLaser : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Ground"))
         {
-            Destroy(this.gameObject);
+            BulletDestroy();
         }
     }
 
