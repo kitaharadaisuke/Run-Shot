@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 77302278}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -230,9 +230,10 @@ GameObject:
   - component: {fileID: 342241996}
   - component: {fileID: 342241998}
   - component: {fileID: 342241997}
+  - component: {fileID: 342241999}
   m_Layer: 0
   m_Name: diffusionBeam2
-  m_TagString: Untagged
+  m_TagString: Diffusion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5023,6 +5024,18 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &342241999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342241995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 001a941bf15d2d9429a8b21e34d9abd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &555699668
 GameObject:
   m_ObjectHideFlags: 0
@@ -5226,7 +5239,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &604938219
 Transform:
   m_ObjectHideFlags: 0
@@ -5257,9 +5270,10 @@ GameObject:
   - component: {fileID: 624141175}
   - component: {fileID: 624141177}
   - component: {fileID: 624141176}
+  - component: {fileID: 624141178}
   m_Layer: 0
   m_Name: diffusionBeam5
-  m_TagString: Untagged
+  m_TagString: Diffusion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10050,6 +10064,18 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &624141178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624141174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 001a941bf15d2d9429a8b21e34d9abd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &771303081
 GameObject:
   m_ObjectHideFlags: 0
@@ -10061,9 +10087,10 @@ GameObject:
   - component: {fileID: 771303082}
   - component: {fileID: 771303084}
   - component: {fileID: 771303083}
+  - component: {fileID: 771303085}
   m_Layer: 0
   m_Name: diffusionBeam1
-  m_TagString: Untagged
+  m_TagString: Diffusion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14854,6 +14881,18 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &771303085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771303081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 001a941bf15d2d9429a8b21e34d9abd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &938399342
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14867,7 +14906,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3724270176738055890, guid: 4ace3f6a613ca0b4e9e7d45ed70eb7f4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.861
       objectReference: {fileID: 0}
     - target: {fileID: 3724270176738055890, guid: 4ace3f6a613ca0b4e9e7d45ed70eb7f4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -14875,7 +14914,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3724270176738055890, guid: 4ace3f6a613ca0b4e9e7d45ed70eb7f4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.044
+      value: -2.928
       objectReference: {fileID: 0}
     - target: {fileID: 3724270176738055890, guid: 4ace3f6a613ca0b4e9e7d45ed70eb7f4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -15055,9 +15094,10 @@ GameObject:
   - component: {fileID: 1428230953}
   - component: {fileID: 1428230955}
   - component: {fileID: 1428230954}
+  - component: {fileID: 1428230956}
   m_Layer: 0
   m_Name: diffusionBeam3
-  m_TagString: Untagged
+  m_TagString: Diffusion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19848,6 +19888,18 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &1428230956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428230952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 001a941bf15d2d9429a8b21e34d9abd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1585557025
 GameObject:
   m_ObjectHideFlags: 0
@@ -19859,9 +19911,10 @@ GameObject:
   - component: {fileID: 1585557026}
   - component: {fileID: 1585557028}
   - component: {fileID: 1585557027}
+  - component: {fileID: 1585557029}
   m_Layer: 0
   m_Name: diffusionBeam4
-  m_TagString: Untagged
+  m_TagString: Diffusion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24652,6 +24705,18 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &1585557029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1585557025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 001a941bf15d2d9429a8b21e34d9abd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1648855858
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24873,13 +24938,14 @@ GameObject:
   - component: {fileID: 1823553250}
   - component: {fileID: 1823553252}
   - component: {fileID: 1823553251}
+  - component: {fileID: 1823553253}
   m_Layer: 0
   m_Name: DomeBeam
-  m_TagString: Untagged
+  m_TagString: Dome
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1823553250
 Transform:
   m_ObjectHideFlags: 0
@@ -24888,7 +24954,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1823553249}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1668229855}
@@ -28597,15 +28663,16 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 4
-    type: 0
+    type: 1
     collisionMode: 0
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
     multiplyColliderForceByParticleSpeed: 0
     multiplyColliderForceByCollisionAngle: 1
-    m_Planes: []
+    m_Planes:
+    - {fileID: 1823553250}
     m_Dampen:
       serializedVersion: 2
       minMaxState: 0
@@ -28662,7 +28729,7 @@ ParticleSystem:
     m_Bounce:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -28767,14 +28834,14 @@ ParticleSystem:
         m_RotationOrder: 4
     minKillSpeed: 0
     maxKillSpeed: 10000
-    radiusScale: 1
+    radiusScale: 0.1
     collidesWith:
       serializedVersion: 2
       m_Bits: 4294967295
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
@@ -29725,6 +29792,18 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &1823553253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823553249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 001a941bf15d2d9429a8b21e34d9abd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1914952846
 GameObject:
   m_ObjectHideFlags: 0
@@ -29739,11 +29818,11 @@ GameObject:
   - component: {fileID: 1914952850}
   m_Layer: 0
   m_Name: StraightBeam
-  m_TagString: Untagged
+  m_TagString: Straight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1914952847
 Transform:
   m_ObjectHideFlags: 0
