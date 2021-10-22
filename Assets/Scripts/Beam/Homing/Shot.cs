@@ -8,6 +8,12 @@ public class Shot : MonoBehaviour
     [SerializeField] GameObject raser;
     [SerializeField] Transform muzzle;
     GameObject[] enemyObj;
+    GameInput gameInput;
+
+    private void Awake() => gameInput = new GameInput();
+    private void OnEnable() => gameInput.Enable();
+    private void OnDisable() => gameInput.Disable();
+    private void OnDestroy() => gameInput.Dispose();
 
     void Update()
     {
@@ -15,7 +21,7 @@ public class Shot : MonoBehaviour
 
         if (enemyObj.Length >= 1)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (gameInput.Player.NormalAttack.triggered)
             {
                 // íeä€ÇÃï°êª
                 GameObject bullets = Instantiate(bullet) as GameObject;
@@ -23,7 +29,7 @@ public class Shot : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(1))
+        if (gameInput.Player.SpecialAttack.triggered)
         {
             StartCoroutine("StraightBeam");
         }
