@@ -15,7 +15,7 @@ MonoBehaviour:
   maxHp: 1000
   bG: 100
   stamina: 100
-  speed: 1
+  speed: 3
   dash: 2
   normalA: 5
   specialA1: 30
