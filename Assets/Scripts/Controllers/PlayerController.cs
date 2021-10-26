@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour
 
     int speed;
     int hp;
-    int changenum;
     float stamina;
     float bg;
     float inputH;
@@ -63,18 +62,6 @@ public class PlayerController : MonoBehaviour
         if (gameInput.Player.NormalAttack.triggered)
         {
             bg -= 2;
-        }
-
-        if (gameInput.Player.Change.triggered)
-        {
-            if (changenum <= 2)
-            {
-                changenum++;
-            }
-            if (changenum >= 3)
-            {
-                changenum = 0;
-            }
         }
 
         //スタミナ消費

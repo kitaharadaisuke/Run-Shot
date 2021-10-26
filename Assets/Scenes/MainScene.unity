@@ -5233,6 +5233,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 604938219}
+  - component: {fileID: 604938220}
   m_Layer: 0
   m_Name: diffusionBeam
   m_TagString: Untagged
@@ -5259,6 +5260,24 @@ Transform:
   m_Father: {fileID: 1668229855}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &604938220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604938218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6795f3f15873274448a121ea9abbdf99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  diffusions:
+  - {fileID: 771303081}
+  - {fileID: 342241995}
+  - {fileID: 1428230952}
+  - {fileID: 1585557025}
+  - {fileID: 624141174}
 --- !u!1 &624141174
 GameObject:
   m_ObjectHideFlags: 0
@@ -24925,7 +24944,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 2662838095939883322, guid: c4c782d93daff5449aed24d6081ed5e2, type: 3}
-  raser: {fileID: 1914952846}
+  straight: {fileID: 1914952846}
+  diffusion: {fileID: 604938218}
+  dome: {fileID: 1823553249}
   muzzle: {fileID: 555699669}
 --- !u!1 &1823553249
 GameObject:
