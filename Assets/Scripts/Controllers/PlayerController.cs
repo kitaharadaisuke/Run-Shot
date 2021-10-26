@@ -53,12 +53,18 @@ public class PlayerController : MonoBehaviour
         {
             speed = speed / 2;
         }
+        //ジャンプ
         if (gameInput.Player.Jump.triggered)
         {
-            //ジャンプ
             rb.AddForce(Vector3.up * upForce);
         }
-
+        //回避
+        if (gameInput.Player.Avoid.triggered)
+        {
+            StartCoroutine("AvoidCoroutine");
+            stamina -= 10;
+        }
+        //通常攻撃
         if (gameInput.Player.NormalAttack.triggered)
         {
             bg -= 2;
@@ -84,5 +90,32 @@ public class PlayerController : MonoBehaviour
                 stamina += 0.1f;
             }
         }
+        Debug.Log(hp);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            hp -= 10;
+            StartCoroutine("DamageCoroutine");
+        }
+    }
+
+
+    //ダメージ後無敵時間
+    IEnumerator DamageCoroutine()
+    {
+        this.gameObject.layer = LayerMask.NameToLayer("PlayerDamage");
+        yield return new WaitForSeconds(0.5f);
+        this.gameObject.layer = LayerMask.NameToLayer("Player");
+    }
+
+    //回避無敵時間
+    IEnumerator AvoidCoroutine()
+    {
+        this.gameObject.layer = LayerMask.NameToLayer("PlayerDamage");
+        yield return new WaitForSeconds(2.0f);
+        this.gameObject.layer = LayerMask.NameToLayer("Player");
     }
 }
