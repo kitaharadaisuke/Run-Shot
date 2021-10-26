@@ -81,6 +81,14 @@ public class @GameInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Avoid"",
+                    ""type"": ""Button"",
+                    ""id"": ""6d7c3383-fd21-4380-afb3-443ae72f80ea"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -281,6 +289,17 @@ public class @GameInput : IInputActionCollection, IDisposable
                     ""action"": ""Change"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""52acc4d5-3433-43bc-a262-1ebf1665e785"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Avoid"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -314,6 +333,7 @@ public class @GameInput : IInputActionCollection, IDisposable
         m_Player_NormalAttack = m_Player.FindAction("NormalAttack", throwIfNotFound: true);
         m_Player_SpecialAttack = m_Player.FindAction("SpecialAttack", throwIfNotFound: true);
         m_Player_Change = m_Player.FindAction("Change", throwIfNotFound: true);
+        m_Player_Avoid = m_Player.FindAction("Avoid", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -371,6 +391,7 @@ public class @GameInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_NormalAttack;
     private readonly InputAction m_Player_SpecialAttack;
     private readonly InputAction m_Player_Change;
+    private readonly InputAction m_Player_Avoid;
     public struct PlayerActions
     {
         private @GameInput m_Wrapper;
@@ -383,6 +404,7 @@ public class @GameInput : IInputActionCollection, IDisposable
         public InputAction @NormalAttack => m_Wrapper.m_Player_NormalAttack;
         public InputAction @SpecialAttack => m_Wrapper.m_Player_SpecialAttack;
         public InputAction @Change => m_Wrapper.m_Player_Change;
+        public InputAction @Avoid => m_Wrapper.m_Player_Avoid;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -416,6 +438,9 @@ public class @GameInput : IInputActionCollection, IDisposable
                 @Change.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChange;
                 @Change.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChange;
                 @Change.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChange;
+                @Avoid.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAvoid;
+                @Avoid.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAvoid;
+                @Avoid.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAvoid;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -444,6 +469,9 @@ public class @GameInput : IInputActionCollection, IDisposable
                 @Change.started += instance.OnChange;
                 @Change.performed += instance.OnChange;
                 @Change.canceled += instance.OnChange;
+                @Avoid.started += instance.OnAvoid;
+                @Avoid.performed += instance.OnAvoid;
+                @Avoid.canceled += instance.OnAvoid;
             }
         }
     }
@@ -467,5 +495,6 @@ public class @GameInput : IInputActionCollection, IDisposable
         void OnNormalAttack(InputAction.CallbackContext context);
         void OnSpecialAttack(InputAction.CallbackContext context);
         void OnChange(InputAction.CallbackContext context);
+        void OnAvoid(InputAction.CallbackContext context);
     }
 }
