@@ -53,7 +53,7 @@ public class Shot : MonoBehaviour
 
         if (gameInput.Player.SpecialAttack.triggered)
         {
-
+            //ì¡éÍçUåÇ
             switch (changenum)
             {
                 case 0:
@@ -90,5 +90,4 @@ public class Shot : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         dome.SetActive(false);
     }
-
 }
