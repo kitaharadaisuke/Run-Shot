@@ -29,6 +29,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    //ビームを食らった時
     private void OnParticleCollision(GameObject other)
     {
         //特殊ビーム1

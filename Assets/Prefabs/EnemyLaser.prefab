@@ -14,10 +14,10 @@ GameObject:
   - component: {fileID: 2662838095939883326}
   - component: {fileID: 2662838095939883325}
   - component: {fileID: 2662838095939883324}
-  - component: {fileID: 2662838095939883323}
+  - component: {fileID: -1781645277013969539}
   m_Layer: 0
-  m_Name: HomingLaser
-  m_TagString: Bullet
+  m_Name: EnemyLaser
+  m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -212,7 +212,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2662838095939883323
+--- !u!114 &-1781645277013969539
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2662838095939883322}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba77eea50c525e843adf0c9d3a91a7cf, type: 3}
+  m_Script: {fileID: 11500000, guid: 911638ac12e410f4abb9fc431805f0a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   acceleration: {x: 0, y: 0, z: 0}
