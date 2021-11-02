@@ -1,9 +1,11 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] PlayerData player;
+    [SerializeField] Slider hpBar;
     [SerializeField] float upForce = 0f;
 
     GameInput gameInput;
@@ -12,6 +14,7 @@ public class PlayerController : MonoBehaviour
 
     int speed;
     int hp;
+    int jumpCount;
     float stamina;
     float bg;
     float inputH;
@@ -33,6 +36,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        //hpバー
+        hpBar.value = hp;
         moveInput = gameInput.Player.Move.ReadValue<Vector2>();
 
         Vector3 cameraFoward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
@@ -53,9 +58,13 @@ public class PlayerController : MonoBehaviour
             speed = speed / 2;
         }
         //ジャンプ
-        if (gameInput.Player.Jump.triggered)
+        if (jumpCount <= 1)
         {
-            rb.AddForce(Vector3.up * upForce);
+            if (gameInput.Player.Jump.triggered)
+            {
+                jumpCount++;
+                rb.AddForce(Vector3.up * upForce);
+            }
         }
         //回避
         if (gameInput.Player.Avoid.triggered)
@@ -89,15 +98,27 @@ public class PlayerController : MonoBehaviour
                 stamina += 0.1f;
             }
         }
-        Debug.Log(hp);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        //近接敵
         if (collision.gameObject.CompareTag("Enemy"))
         {
             hp -= 10;
             StartCoroutine("DamageCoroutine");
+        }
+        //遠距離敵
+        if (collision.gameObject.CompareTag("EnemyBullet"))
+        {
+            hp -= 5;
+            StartCoroutine("DamageCoroutine");
+        }
+
+        //接地判定
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            jumpCount = 0;
         }
     }
 

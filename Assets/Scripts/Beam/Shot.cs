@@ -59,7 +59,6 @@ public class Shot : MonoBehaviour
                 case 0:
                     StartCoroutine("StraightBeam");
                     break;
-
                 case 1:
                     StartCoroutine("DiffusionBeam");
                     break;
