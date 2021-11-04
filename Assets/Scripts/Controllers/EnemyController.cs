@@ -15,7 +15,7 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        if(hp <= 0)
+        if (hp <= 0)
         {
             StartCoroutine("EnemyDead");
         }
@@ -23,15 +23,17 @@ public class EnemyController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        //通常弾
         if (collision.gameObject.CompareTag("Bullet"))
         {
             hp -= 5;
         }
     }
 
-    //ビームを食らった時
+    //Particleの当たり判定
     private void OnParticleCollision(GameObject other)
     {
+        //ビームを食らった時のダメージ
         //特殊ビーム1
         if (other.gameObject.CompareTag("Straight"))
         {

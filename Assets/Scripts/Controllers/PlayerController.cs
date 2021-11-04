@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
         {
             speed = speed / 2;
         }
-        //ジャンプ
+        //ジャンプ(二段ジャンプ) 通常ジャンプにしたければ(jumpCount<1)にする
         if (jumpCount <= 1)
         {
             if (gameInput.Player.Jump.triggered)
@@ -93,6 +93,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            //スタミナ回復
             if (stamina <= 100)
             {
                 stamina += 0.1f;

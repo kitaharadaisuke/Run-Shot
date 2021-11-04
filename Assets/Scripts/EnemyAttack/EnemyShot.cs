@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyShot : MonoBehaviour
@@ -11,6 +10,7 @@ public class EnemyShot : MonoBehaviour
 
     void Start()
     {
+        //’e‚Ì‘Å‚¿o‚µ‚ÍStart“à‚¶‚á‚È‚¢‚ÆƒoƒO‚é
         playerObj = GameObject.FindGameObjectsWithTag("Player");
         if (playerObj.Length >= 1)
         {
