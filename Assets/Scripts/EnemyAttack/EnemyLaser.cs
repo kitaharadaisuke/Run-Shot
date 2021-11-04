@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyLaser : MonoBehaviour
@@ -30,9 +28,10 @@ public class EnemyLaser : MonoBehaviour
         acceleration = Vector3.zero;
         Vector3 diff = target.position - transform.position;
         acceleration += (diff - velocity * period) * 2f / (period * period);
+        //ホーミング弾の追尾能力
         if (acceleration.magnitude > 10f)
         {
-            acceleration = acceleration.normalized * 10f;
+            acceleration = acceleration.normalized * 20f;
         }
         period -= Time.deltaTime;
         velocity += acceleration * Time.deltaTime;

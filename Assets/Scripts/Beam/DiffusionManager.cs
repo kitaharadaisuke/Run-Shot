@@ -4,17 +4,7 @@ public class DiffusionManager : MonoBehaviour
 {
     [SerializeField] GameObject[] diffusions;
 
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
+    //この親オブジェクト起動時
     private void OnEnable()
     {
         diffusions[0].SetActive(true);
