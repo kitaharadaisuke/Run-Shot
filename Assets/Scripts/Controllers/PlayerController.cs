@@ -14,19 +14,20 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
     Vector2 moveInput;
 
+    private void Awake() => gameInput = new GameInput();
+    private void OnEnable() => gameInput.Enable();
+    private void OnDisable() => gameInput.Disable();
+    private void OnDestroy() => gameInput.Dispose();
+
     int speed;
     int startSpeed;
     int hp;
     int jumpCount;
     float stamina;
-    float bg;
     float inputH;
     float inputV;
 
-    private void Awake() => gameInput = new GameInput();
-    private void OnEnable() => gameInput.Enable();
-    private void OnDisable() => gameInput.Disable();
-    private void OnDestroy() => gameInput.Dispose();
+    public float bg;
 
     void Start()
     {
