@@ -10,8 +10,10 @@ public class Shot : MonoBehaviour
     [SerializeField] GameObject dome;
     [SerializeField] Text text;
     [SerializeField] Transform muzzle;
+
     GameObject[] enemyObj;
     GameInput gameInput;
+    PlayerController playerController;
 
     int changenum;
 
@@ -25,6 +27,7 @@ public class Shot : MonoBehaviour
         straight.SetActive(false);
         diffusion.SetActive(false);
         dome.SetActive(false);
+        playerController = this.gameObject.GetComponent<PlayerController>();
     }
     void Update()
     {
@@ -33,43 +36,56 @@ public class Shot : MonoBehaviour
         //ì¡éÍçUåÇêÿÇËë÷Ç¶
         if (gameInput.Player.Change.triggered)
         {
-            if (changenum <= 2)
-            {
-                changenum++;
-            }
-            if (changenum >= 3)
-            {
-                changenum = 0;
-            }
-        }
-
-        if (enemyObj.Length >= 1)
-        {
-            if (gameInput.Player.NormalAttack.triggered)
-            {
-                // íeä€ÇÃï°êª
-                GameObject bullets = Instantiate(bullet) as GameObject;
-                bullets.transform.position = muzzle.position;
-            }
-        }
-
-        if (gameInput.Player.SpecialAttack.triggered)
-        {
-            //ì¡éÍçUåÇ
             switch (changenum)
             {
                 case 0:
-                    StartCoroutine("StraightBeam");
-                    text.text = "StraightBeam";
+                    text.text = "DiffusionBeam";
+                    changenum++;
                     break;
                 case 1:
-                    StartCoroutine("DiffusionBeam");
-                    text.text = "DiffusionBeam";
+                    text.text = "DomeBeam";
+                    changenum++;
                     break;
                 case 2:
-                    StartCoroutine("DomeBeam");
-                    text.text = "DomeBeam";
+                    text.text = "StraightBeam";
+                    changenum = 0;
                     break;
+            }
+        }
+
+        if (playerController.bg >= 2)
+        {
+            if (enemyObj.Length >= 1)
+            {
+                if (gameInput.Player.NormalAttack.triggered)
+                {
+                    // íeä€ÇÃï°êª
+                    GameObject bullets = Instantiate(bullet) as GameObject;
+                    bullets.transform.position = muzzle.position;
+                }
+            }
+        }
+
+        if (playerController.bg >= 5)
+        {
+            if (gameInput.Player.SpecialAttack.triggered)
+            {
+                //ì¡éÍçUåÇ
+                switch (changenum)
+                {
+                    case 0:
+                        StartCoroutine("StraightBeam");
+                        playerController.bg -= 5;
+                        break;
+                    case 1:
+                        StartCoroutine("DiffusionBeam");
+                        playerController.bg -= 5;
+                        break;
+                    case 2:
+                        StartCoroutine("DomeBeam");
+                        playerController.bg -= 5;
+                        break;
+                }
             }
         }
     }
