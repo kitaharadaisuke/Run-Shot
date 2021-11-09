@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Shot : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class Shot : MonoBehaviour
     [SerializeField] GameObject straight;
     [SerializeField] GameObject diffusion;
     [SerializeField] GameObject dome;
+    [SerializeField] Text text;
     [SerializeField] Transform muzzle;
     GameObject[] enemyObj;
     GameInput gameInput;
@@ -58,12 +60,15 @@ public class Shot : MonoBehaviour
             {
                 case 0:
                     StartCoroutine("StraightBeam");
+                    text.text = "StraightBeam";
                     break;
                 case 1:
                     StartCoroutine("DiffusionBeam");
+                    text.text = "DiffusionBeam";
                     break;
                 case 2:
                     StartCoroutine("DomeBeam");
+                    text.text = "DomeBeam";
                     break;
             }
         }
