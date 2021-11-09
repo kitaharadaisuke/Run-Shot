@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] PlayerData player;
     [SerializeField] Slider hpBar;
+    [SerializeField] Slider staminaBar;
+    [SerializeField] Slider beamBar;
     [SerializeField] float upForce = 0f;
 
     GameInput gameInput;
@@ -13,6 +15,7 @@ public class PlayerController : MonoBehaviour
     Vector2 moveInput;
 
     int speed;
+    int startSpeed;
     int hp;
     int jumpCount;
     float stamina;
@@ -29,6 +32,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         speed = player.Speed;
+        startSpeed = player.Speed;
         hp = player.MaxHP;
         stamina = player.Stamina;
         bg = player.BG;
@@ -38,6 +42,11 @@ public class PlayerController : MonoBehaviour
     {
         //hpバー
         hpBar.value = hp;
+        //staminaバー
+        staminaBar.value = stamina;
+        //beamゲージバー
+        beamBar.value = bg;
+
         moveInput = gameInput.Player.Move.ReadValue<Vector2>();
 
         Vector3 cameraFoward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
@@ -51,11 +60,14 @@ public class PlayerController : MonoBehaviour
         //ダッシュ
         if (gameInput.Player.Dash.triggered)
         {
-            speed = speed * 2;
+            if (stamina >= 1)
+            {
+                speed = speed * 2;
+            }
         }
-        else if (gameInput.Player.UnDash.triggered)
+        else if (gameInput.Player.UnDash.triggered || stamina <= 1)
         {
-            speed = speed / 2;
+            speed = startSpeed;
         }
         //ジャンプ(二段ジャンプ) 通常ジャンプにしたければ(jumpCount<1)にする
         if (jumpCount <= 1)
@@ -79,7 +91,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //スタミナ消費
-        if (speed == 2)
+        if (speed >= 6)
         {
             if (stamina >= 0)
             {
