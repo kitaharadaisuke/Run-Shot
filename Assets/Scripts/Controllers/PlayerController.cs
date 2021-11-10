@@ -82,8 +82,11 @@ public class PlayerController : MonoBehaviour
         //‰ñ”ğ
         if (gameInput.Player.Avoid.triggered)
         {
-            StartCoroutine("AvoidCoroutine");
-            stamina -= 10;
+            if (stamina >= 10)
+            {
+                StartCoroutine("AvoidCoroutine");
+                stamina -= 10;
+            }
         }
         //’ÊíUŒ‚
         if (gameInput.Player.NormalAttack.triggered)
