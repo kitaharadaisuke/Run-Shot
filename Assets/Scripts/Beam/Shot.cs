@@ -53,7 +53,7 @@ public class Shot : MonoBehaviour
             }
         }
 
-        if (playerController.bg >= 2)
+        if (playerController.bg >= 5)
         {
             if (enemyObj.Length >= 1)
             {

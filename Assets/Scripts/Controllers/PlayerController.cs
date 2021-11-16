@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour
     float stamina;
     float inputH;
     float inputV;
-    bool move = false;
 
     public float bg;
 
@@ -42,7 +41,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(speed);
         //hpバー
         hpBar.value = hp;
         //staminaバー
@@ -97,7 +95,7 @@ public class PlayerController : MonoBehaviour
         //通常攻撃
         if (gameInput.Player.NormalAttack.triggered)
         {
-            bg -= 2;
+            bg -= 5;
         }
 
         //スタミナ消費
@@ -110,7 +108,7 @@ public class PlayerController : MonoBehaviour
             //ビームゲージ回復
             if (bg < 100)
             {
-                bg += 0.1f;
+                bg += 0.08f;
             }
         }
         else
@@ -170,7 +168,6 @@ public class PlayerController : MonoBehaviour
     {
         stamina = 0;
         yield return new WaitForSeconds(2.0f);
-        //stamina ++;
         for (int i = 0; i < 7; i++) { stamina += 0.1f; }
     }
 }
