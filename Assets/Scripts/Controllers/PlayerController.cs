@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     float stamina;
     float inputH;
     float inputV;
+    bool move = false;
 
     public float bg;
 
@@ -41,6 +42,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(speed);
         //hpバー
         hpBar.value = hp;
         //staminaバー
@@ -59,17 +61,21 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveForward), 0.1f);
         }
         //ダッシュ
-        if (gameInput.Player.Dash.triggered)
+        if (moveInput.y >= 0.5 || moveInput.y <= -0.5)
         {
-            if (stamina >= 1)
+            if (gameInput.Player.Dash.triggered)
             {
-                speed = speed * 2;
+                if (stamina >= 1)
+                {
+                    speed = speed * 2;
+                }
+            }
+            else if (gameInput.Player.UnDash.triggered || stamina <= 1)
+            {
+                speed = startSpeed;
             }
         }
-        else if (gameInput.Player.UnDash.triggered || stamina <= 1)
-        {
-            speed = startSpeed;
-        }
+
         //ジャンプ(二段ジャンプ) 通常ジャンプにしたければ(jumpCount<1)にする
         if (jumpCount <= 1)
         {
@@ -110,9 +116,13 @@ public class PlayerController : MonoBehaviour
         else
         {
             //スタミナ回復
-            if (stamina <= 100)
+            if (stamina <= 100 && stamina >= 1)
             {
                 stamina += 0.1f;
+            }
+            else if (stamina < 1)
+            {
+                StartCoroutine("StaminaCoroutine");
             }
         }
     }
@@ -154,5 +164,13 @@ public class PlayerController : MonoBehaviour
         this.gameObject.layer = LayerMask.NameToLayer("PlayerDamage");
         yield return new WaitForSeconds(2.0f);
         this.gameObject.layer = LayerMask.NameToLayer("Player");
+    }
+
+    IEnumerator StaminaCoroutine()
+    {
+        stamina = 0;
+        yield return new WaitForSeconds(2.0f);
+        //stamina ++;
+        for (int i = 0; i < 7; i++) { stamina += 0.1f; }
     }
 }
