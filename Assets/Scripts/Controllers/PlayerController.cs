@@ -59,17 +59,21 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveForward), 0.1f);
         }
         //ダッシュ
-        if (gameInput.Player.Dash.triggered)
+        if (moveInput.y >= 0.5 || moveInput.y <= -0.5)
         {
-            if (stamina >= 1)
+            if (gameInput.Player.Dash.triggered)
             {
-                speed = speed * 2;
+                if (stamina >= 1)
+                {
+                    speed = speed * 2;
+                }
+            }
+            else if (gameInput.Player.UnDash.triggered || stamina <= 1)
+            {
+                speed = startSpeed;
             }
         }
-        else if (gameInput.Player.UnDash.triggered || stamina <= 1)
-        {
-            speed = startSpeed;
-        }
+
         //ジャンプ(二段ジャンプ) 通常ジャンプにしたければ(jumpCount<1)にする
         if (jumpCount <= 1)
         {
@@ -91,7 +95,7 @@ public class PlayerController : MonoBehaviour
         //通常攻撃
         if (gameInput.Player.NormalAttack.triggered)
         {
-            bg -= 2;
+            bg -= 5;
         }
 
         //スタミナ消費
@@ -104,15 +108,19 @@ public class PlayerController : MonoBehaviour
             //ビームゲージ回復
             if (bg < 100)
             {
-                bg += 0.1f;
+                bg += 0.08f;
             }
         }
         else
         {
             //スタミナ回復
-            if (stamina <= 100)
+            if (stamina <= 100 && stamina >= 1)
             {
                 stamina += 0.1f;
+            }
+            else if (stamina < 1)
+            {
+                StartCoroutine("StaminaCoroutine");
             }
         }
     }
@@ -154,5 +162,12 @@ public class PlayerController : MonoBehaviour
         this.gameObject.layer = LayerMask.NameToLayer("PlayerDamage");
         yield return new WaitForSeconds(2.0f);
         this.gameObject.layer = LayerMask.NameToLayer("Player");
+    }
+
+    IEnumerator StaminaCoroutine()
+    {
+        stamina = 0;
+        yield return new WaitForSeconds(2.0f);
+        for (int i = 0; i < 7; i++) { stamina += 0.1f; }
     }
 }
