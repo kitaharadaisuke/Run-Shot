@@ -58,8 +58,9 @@ public class PlayerController : MonoBehaviour
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveForward), 0.1f);
         }
+
         //ダッシュ
-        if (moveInput.y >= 0.5 || moveInput.y <= -0.5)
+        if (moveInput.y >= 0.7 || moveInput.y <= -0.7 || moveInput.x >= 1 || moveInput.x <= -1)
         {
             if (gameInput.Player.Dash.triggered)
             {
@@ -73,6 +74,7 @@ public class PlayerController : MonoBehaviour
                 speed = startSpeed;
             }
         }
+        else { speed = startSpeed; }
 
         //ジャンプ(二段ジャンプ) 通常ジャンプにしたければ(jumpCount<1)にする
         if (jumpCount <= 1)
@@ -91,11 +93,6 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine("AvoidCoroutine");
                 stamina -= 10;
             }
-        }
-        //通常攻撃
-        if (gameInput.Player.NormalAttack.triggered)
-        {
-            bg -= 5;
         }
 
         //スタミナ消費
