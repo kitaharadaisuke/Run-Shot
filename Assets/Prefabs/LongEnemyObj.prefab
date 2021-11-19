@@ -238,3 +238,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 2662838095939883322, guid: 90499aaa451b55344a302e5cedcc6659, type: 3}
   muzzle: {fileID: 8290700209666037963}
+  seconds: 0

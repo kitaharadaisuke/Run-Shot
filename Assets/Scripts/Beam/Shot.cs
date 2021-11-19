@@ -62,6 +62,7 @@ public class Shot : MonoBehaviour
                     // íeä€ÇÃï°êª
                     GameObject bullets = Instantiate(bullet) as GameObject;
                     bullets.transform.position = muzzle.position;
+                    playerController.bg -= 5;
                 }
             }
         }

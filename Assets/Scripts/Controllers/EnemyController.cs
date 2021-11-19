@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
@@ -37,6 +37,7 @@ public class EnemyController : MonoBehaviour
         //特殊ビーム1
         if (other.gameObject.CompareTag("Straight"))
         {
+            Debug.Log("衝突");
             hp -= 30;
         }
         //特殊ビーム2
@@ -47,6 +48,7 @@ public class EnemyController : MonoBehaviour
         //特殊ビーム3
         if (other.gameObject.CompareTag("Dome"))
         {
+            Debug.Log("ダメージ");
             hp -= 5;
         }
     }
