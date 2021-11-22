@@ -6,11 +6,16 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField] EnemyData enemy;
 
+    public Item item1;
+    public Item item2;
+    
     int hp;
+    float random;
 
     void Start()
     {
         hp = enemy.MaxHp;
+        random = Random.Range(0, 1f);
     }
 
     void Update()
@@ -37,7 +42,6 @@ public class EnemyController : MonoBehaviour
         //特殊ビーム1
         if (other.gameObject.CompareTag("Straight"))
         {
-            Debug.Log("衝突");
             hp -= 30;
         }
         //特殊ビーム2
@@ -48,7 +52,6 @@ public class EnemyController : MonoBehaviour
         //特殊ビーム3
         if (other.gameObject.CompareTag("Dome"))
         {
-            Debug.Log("ダメージ");
             hp -= 5;
         }
     }
@@ -56,6 +59,15 @@ public class EnemyController : MonoBehaviour
     IEnumerator EnemyDead()
     {
         this.gameObject.SetActive(false);
+        //アイテムドロップ
+        if (random <= 0.5f)
+        {
+            Instantiate(item1, this.transform.position, this.transform.rotation);
+        }
+        else
+        {
+            Instantiate(item2, this.transform.position, this.transform.rotation);
+        }
         yield return new WaitForSeconds(3.0f);
     }
 }

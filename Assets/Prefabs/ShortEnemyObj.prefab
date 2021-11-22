@@ -188,6 +188,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 11400000, guid: 9ee3dc2b33b21ba4685106270aeeed60, type: 2}
+  item1: {fileID: 505753349224705533, guid: 407255fb3ef8d574cbe7ae2f64e1c9a1, type: 3}
+  item2: {fileID: 4470750179405193703, guid: 958da3f373e36ad4aaabfc1b3f8e75e8, type: 3}
 --- !u!195 &2379077674384006553
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -223,3 +225,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  action: 0

@@ -122,6 +122,32 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void getItem(Collider collider)
+    {
+        Item item = collider.GetComponent<Item>();
+
+        if (item == null)
+        {
+            return;
+        }
+        else
+        {
+            if (item.type == Item.ItemType.HpItem)
+            {
+                hp += 10;
+            }
+            else if(item.type == Item.ItemType.StaminaItem)
+            {
+                stamina += 10;
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        getItem(other);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         //�ߐړG
