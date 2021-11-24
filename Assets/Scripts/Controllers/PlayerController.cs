@@ -14,20 +14,22 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
     Vector2 moveInput;
 
+
     private void Awake() => gameInput = new GameInput();
     private void OnEnable() => gameInput.Enable();
     private void OnDisable() => gameInput.Disable();
     private void OnDestroy() => gameInput.Dispose();
 
+    public float bg;
+    public int hp;
+
     int speed;
     int startSpeed;
-    int hp;
     int jumpCount;
     float stamina;
     float inputH;
     float inputV;
 
-    public float bg;
 
     void Start()
     {
@@ -122,6 +124,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //ƒAƒCƒeƒ€Šl“¾
     public void getItem(Collider collider)
     {
         Item item = collider.GetComponent<Item>();
@@ -136,7 +139,7 @@ public class PlayerController : MonoBehaviour
             {
                 hp += 10;
             }
-            else if(item.type == Item.ItemType.StaminaItem)
+            else if (item.type == Item.ItemType.StaminaItem)
             {
                 stamina += 10;
             }
@@ -159,7 +162,7 @@ public class PlayerController : MonoBehaviour
         //‰“‹——£“G
         if (collision.gameObject.CompareTag("EnemyBullet"))
         {
-            hp -= 5;
+            hp -= 500;
             StartCoroutine("DamageCoroutine");
         }
 
