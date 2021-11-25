@@ -6,14 +6,19 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField] EnemyData enemy;
 
+    GameManager gameManager;
+    GameObject gm;
+
     public Item item1;
     public Item item2;
-    
+
     int hp;
     float random;
 
     void Start()
     {
+        gm = GameObject.Find("GameManager");
+        gameManager = gm.GetComponent<GameManager>();
         hp = enemy.MaxHp;
         random = Random.Range(0, 1f);
     }
@@ -31,6 +36,7 @@ public class EnemyController : MonoBehaviour
         //通常弾
         if (collision.gameObject.CompareTag("Bullet"))
         {
+            gameManager.conbo++;
             hp -= 5;
         }
     }
@@ -42,16 +48,19 @@ public class EnemyController : MonoBehaviour
         //特殊ビーム1
         if (other.gameObject.CompareTag("Straight"))
         {
+            gameManager.conbo++;
             hp -= 30;
         }
         //特殊ビーム2
         if (other.gameObject.CompareTag("Diffusion"))
         {
+            gameManager.conbo++;
             hp -= 10;
         }
         //特殊ビーム3
         if (other.gameObject.CompareTag("Dome"))
         {
+            gameManager.conbo++;
             hp -= 5;
         }
     }

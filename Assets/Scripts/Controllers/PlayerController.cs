@@ -11,9 +11,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float upForce = 0f;
 
     GameInput gameInput;
+    GameManager gameManager;
+    GameObject gm;
     Rigidbody rb;
     Vector2 moveInput;
-
 
     private void Awake() => gameInput = new GameInput();
     private void OnEnable() => gameInput.Enable();
@@ -33,6 +34,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        gm = GameObject.Find("GameManager");
+        gameManager = gm.GetComponent<GameManager>();
         rb = GetComponent<Rigidbody>();
         speed = player.Speed;
         startSpeed = player.Speed;
@@ -137,11 +140,17 @@ public class PlayerController : MonoBehaviour
         {
             if (item.type == Item.ItemType.HpItem)
             {
-                hp += 10;
+                if (hp < 1000)
+                {
+                    hp += 10;
+                }
             }
             else if (item.type == Item.ItemType.StaminaItem)
             {
-                stamina += 10;
+                if (stamina < 100)
+                {
+                    stamina += 10;
+                }
             }
         }
     }
@@ -156,12 +165,14 @@ public class PlayerController : MonoBehaviour
         //‹ßÚ“G
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            gameManager.conbo = 0;
             hp -= 10;
             StartCoroutine("DamageCoroutine");
         }
         //‰“‹——£“G
         if (collision.gameObject.CompareTag("EnemyBullet"))
         {
+            gameManager.conbo = 0;
             hp -= 500;
             StartCoroutine("DamageCoroutine");
         }
