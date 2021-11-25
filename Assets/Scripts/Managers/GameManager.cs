@@ -7,9 +7,12 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] PlayerController player;
     [SerializeField] TextMeshProUGUI[] overSelect;
+    [SerializeField] TextMeshProUGUI conboText;
     [SerializeField] GameObject OverPanel;
 
     GameInput gameInput;
+    
+    public int conbo = 0;
 
     int playerHp;
     int overSelectNum = 0;
@@ -39,6 +42,9 @@ public class GameManager : MonoBehaviour
             OverPanel.SetActive(true);
             GameOverMenu();
         }
+
+        //ÉRÉìÉ{êîï\é¶
+        conboText.text = conbo.ToString("0");
     }
 
     void GameOverMenu()
