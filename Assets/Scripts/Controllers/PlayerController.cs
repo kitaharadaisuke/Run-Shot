@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] PlayerData player;
+    [SerializeField] EnemyData[] enemies;
     [SerializeField] Slider hpBar;
     [SerializeField] Slider staminaBar;
     [SerializeField] Slider beamBar;
@@ -21,12 +22,17 @@ public class PlayerController : MonoBehaviour
     private void OnDisable() => gameInput.Disable();
     private void OnDestroy() => gameInput.Dispose();
 
-    public float bg;
-    public int hp;
+    [System.NonSerialized] public float bg;
+    [System.NonSerialized] public int hp;
 
     int speed;
     int startSpeed;
     int jumpCount;
+    int shortAttack;
+    int longAttack;
+    int bossNAttack;
+    int bossRAttack;
+    int bossPAttack;
     float stamina;
     float inputH;
     float inputV;
@@ -37,11 +43,18 @@ public class PlayerController : MonoBehaviour
         gm = GameObject.Find("GameManager");
         gameManager = gm.GetComponent<GameManager>();
         rb = GetComponent<Rigidbody>();
+        //プレイヤーデータ
         speed = player.Speed;
         startSpeed = player.Speed;
         hp = player.MaxHP;
         stamina = player.Stamina;
         bg = player.BG;
+        //エネミーデータ
+        shortAttack = enemies[0].NormalA;
+        longAttack = enemies[1].NormalA;
+        bossNAttack = enemies[2].NormalA;
+        bossRAttack = enemies[2].RangeA;
+        bossPAttack = enemies[2].PowerA;
     }
 
     void Update()
@@ -166,16 +179,38 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             gameManager.conbo = 0;
-            hp -= 10;
+            hp -= shortAttack;
             StartCoroutine("DamageCoroutine");
         }
         //遠距離敵
         if (collision.gameObject.CompareTag("EnemyBullet"))
         {
             gameManager.conbo = 0;
-            hp -= 500;
+            hp -= longAttack;
             StartCoroutine("DamageCoroutine");
         }
+        //ボス通常
+        if (collision.gameObject.CompareTag("BossNAttack"))
+        {
+            gameManager.conbo = 0;
+            hp -= bossNAttack;
+            StartCoroutine("DamageCoroutine");
+        }
+        //ボス範囲
+        if (collision.gameObject.CompareTag("BossRAttack"))
+        {
+            gameManager.conbo = 0;
+            hp -= bossRAttack;
+            StartCoroutine("DamageCoroutine");
+        }
+        //ボス威力
+        if (collision.gameObject.CompareTag("BossPAttack"))
+        {
+            gameManager.conbo = 0;
+            hp -= bossPAttack;
+            StartCoroutine("DamageCoroutine");
+        }
+
 
         //接地判定
         if (collision.gameObject.CompareTag("Ground"))

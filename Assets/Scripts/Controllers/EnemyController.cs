@@ -1,10 +1,12 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] EnemyData enemy;
+    [SerializeField] Slider hpBar;
 
     GameManager gameManager;
     GameObject gm;
@@ -25,6 +27,8 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
+        //hpÉoÅ[
+        hpBar.value = hp;
         if (hp <= 0)
         {
             StartCoroutine("EnemyDead");

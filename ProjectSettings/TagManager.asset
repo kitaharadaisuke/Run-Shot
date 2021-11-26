@@ -11,6 +11,9 @@ TagManager:
   - Diffusion
   - Dome
   - EnemyBullet
+  - BossNAttack
+  - BossRAttack
+  - BossPAttack
   layers:
   - Default
   - TransparentFX
