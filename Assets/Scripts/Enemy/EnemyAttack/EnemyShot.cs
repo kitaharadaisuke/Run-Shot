@@ -24,7 +24,7 @@ public class EnemyShot : MonoBehaviour
 
     IEnumerator BulletCoroutine()
     {
-        for (int count = 0; count < 100; count++)
+        for (int count = 0; count < 10000; count++)
         {
             yield return new WaitForSeconds(seconds);
             // ’eŠÛ‚Ì•¡»

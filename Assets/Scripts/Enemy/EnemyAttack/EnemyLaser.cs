@@ -31,7 +31,7 @@ public class EnemyLaser : MonoBehaviour
         //ホーミング弾の追尾能力
         if (acceleration.magnitude > 10f)
         {
-            acceleration = acceleration.normalized * 20f;
+            acceleration = acceleration.normalized * 10f;
         }
         period -= Time.deltaTime;
         velocity += acceleration * Time.deltaTime;

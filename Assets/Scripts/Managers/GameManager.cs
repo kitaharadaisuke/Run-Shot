@@ -6,6 +6,7 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] PlayerController player;
+    [SerializeField] Slider playerHpBar;
     [SerializeField] TextMeshProUGUI[] overSelect;
     [SerializeField] TextMeshProUGUI conboText;
     [SerializeField] GameObject OverPanel;
@@ -35,9 +36,11 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         playerHp = player.hp;
+        playerHpBar.value = playerHp;
         //ゲームオーバー時の処理
         if (playerHp < 0)
         {
+            //playerHp = 0;
             player.enabled = false;
             OverPanel.SetActive(true);
             GameOverMenu();
