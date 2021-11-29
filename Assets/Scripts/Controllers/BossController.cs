@@ -2,8 +2,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class EnemyController : MonoBehaviour
+public class BossController : MonoBehaviour
 {
     [SerializeField] EnemyData enemy;
     [SerializeField] Slider hpBar;
@@ -11,18 +12,13 @@ public class EnemyController : MonoBehaviour
     GameManager gameManager;
     GameObject gm;
 
-    public Item item1;
-    public Item item2;
-
     int hp;
-    float random;
 
     void Start()
     {
         gm = GameObject.Find("GameManager");
         gameManager = gm.GetComponent<GameManager>();
         hp = enemy.MaxHp;
-        random = Random.Range(0, 1f);
     }
 
     void Update()
@@ -31,7 +27,8 @@ public class EnemyController : MonoBehaviour
         hpBar.value = hp;
         if (hp <= 0)
         {
-            StartCoroutine("EnemyDead");
+            Destroy(this.gameObject);
+            //SceneManager.LoadScene("ResultScene");
         }
     }
 
@@ -67,20 +64,5 @@ public class EnemyController : MonoBehaviour
             gameManager.conbo++;
             hp -= 5;
         }
-    }
-
-    IEnumerator EnemyDead()
-    {
-        this.gameObject.SetActive(false);
-        //アイテムドロップ
-        if (random <= 0.5f)
-        {
-            Instantiate(item1, this.transform.position, this.transform.rotation);
-        }
-        else
-        {
-            Instantiate(item2, this.transform.position, this.transform.rotation);
-        }
-        yield return new WaitForSeconds(3.0f);
     }
 }
