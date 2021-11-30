@@ -53,7 +53,7 @@ public class Shot : MonoBehaviour
             }
         }
 
-        if (playerController.bg >= 5)
+        if (playerController.bg >= 3)
         {
             if (enemyObj.Length >= 1)
             {
@@ -62,7 +62,7 @@ public class Shot : MonoBehaviour
                     // íeä€ÇÃï°êª
                     GameObject bullets = Instantiate(bullet) as GameObject;
                     bullets.transform.position = muzzle.position;
-                    playerController.bg -= 5;
+                    playerController.bg -= 3;
                 }
             }
         }
