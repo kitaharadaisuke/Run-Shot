@@ -94,8 +94,8 @@ public class PlayerController : MonoBehaviour
         }
         else { speed = startSpeed; }
 
-        //ジャンプ(二段ジャンプ) 通常ジャンプにしたければ(jumpCount<1)にする
-        if (jumpCount <= 1)
+        //ジャンプ 二段ジャンプにしたければ(jumpCount<=1)にする
+        if (jumpCount < 1)
         {
             if (gameInput.Player.Jump.triggered)
             {
@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //スタミナ消費
-        if (speed >= 6)
+        if (speed > startSpeed)
         {
             if (stamina >= 0)
             {
