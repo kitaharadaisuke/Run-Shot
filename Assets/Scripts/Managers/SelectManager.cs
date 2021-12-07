@@ -6,6 +6,9 @@ using TMPro;
 public class SelectManager : MonoBehaviour
 {
     [SerializeField] GameObject[] selectPanel;
+    [SerializeField] Image[] stageImage;
+
+    public static int stageNum = 0;
 
     GameInput gameInput;
     Image panelImage;
@@ -28,8 +31,16 @@ public class SelectManager : MonoBehaviour
     {
         for (int i = 0; i < selectPanel.Length; i++)
         {
-            if (i == selectNum) { selectPanel[i].gameObject.GetComponent<Image>().color = new Color(255f, 0f, 0f, 255f); }
-            else { selectPanel[i].gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 255f); }
+            if (i == selectNum)
+            {
+                selectPanel[i].gameObject.GetComponent<Image>().color = new Color(255f, 0f, 0f, 255f);
+                stageImage[i].gameObject.SetActive(true);
+            }
+            else
+            {
+                selectPanel[i].gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 255f);
+                stageImage[i].gameObject.SetActive(false);
+            }
         }
         if (gameInput.Menu.Down.triggered)
         {
@@ -61,16 +72,23 @@ public class SelectManager : MonoBehaviour
                 {
                     case 0: //ステージ1
                         SceneManager.LoadScene("MainScene");
+                        stageNum = 0;
                         break;
                     case 1: //ステージ2
                         SceneManager.LoadScene("MainScene");
+                        stageNum = 1;
                         break;
                     case 2: //ステージ3
                         SceneManager.LoadScene("MainScene");
+                        stageNum = 2;
                         break;
                 }
             }
         }
+    }
 
+    public static int GetStageNum()
+    {
+        return stageNum;
     }
 }
