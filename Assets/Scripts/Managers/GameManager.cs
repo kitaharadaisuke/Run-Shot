@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Slider playerHpBar;
     [SerializeField] TextMeshProUGUI[] overSelect;
     [SerializeField] TextMeshProUGUI conboText;
-    [SerializeField] GameObject OverPanel;
+    [SerializeField] GameObject overPanel;
 
     GameInput gameInput;
     
@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     {
         //Cursor.visible = false;
         //Cursor.lockState = CursorLockMode.Confined;
-        OverPanel.SetActive(false);
+        overPanel.SetActive(false);
     }
 
     void Update()
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
         {
             //playerHp = 0;
             player.enabled = false;
-            OverPanel.SetActive(true);
+            overPanel.SetActive(true);
             GameOverMenu();
         }
 
