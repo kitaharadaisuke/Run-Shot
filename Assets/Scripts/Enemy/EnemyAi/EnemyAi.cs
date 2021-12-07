@@ -4,11 +4,12 @@ using UnityEngine.AI;
 
 public class EnemyAi : MonoBehaviour
 {
-    [SerializeField] Transform target;
 
     float coolTime;
     float attackTime;
 
+    Transform target;
+    GameObject player;
     NavMeshAgent agent;
     Rigidbody rb;
     Transform attackRange;
@@ -25,6 +26,7 @@ public class EnemyAi : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         coolTime = 0;
         agent = this.gameObject.GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
@@ -34,6 +36,7 @@ public class EnemyAi : MonoBehaviour
 
     void Update()
     {
+        target = player.transform;
         switch (action)
         {
             case Action.IDOL:
