@@ -72,6 +72,7 @@ public class EnemyController : MonoBehaviour
     IEnumerator EnemyDead()
     {
         this.gameObject.SetActive(false);
+        gameManager.defeat++;
         //アイテムドロップ
         if (random <= 0.5f)
         {
