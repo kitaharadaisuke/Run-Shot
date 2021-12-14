@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class ResultManager : MonoBehaviour
@@ -9,6 +10,8 @@ public class ResultManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI defeatText;
     [SerializeField] TextMeshProUGUI timeText;
     [SerializeField] TextMeshProUGUI rankText;
+
+    GameInput gameInput;
 
     int maxConbo;
     int maxDefeat;
@@ -19,6 +22,13 @@ public class ResultManager : MonoBehaviour
     int defeatRate;
     float clearTime;
 
+    bool isFade = false;
+
+    void Awake() => gameInput = new GameInput();
+    void OnEnable() => gameInput.Enable();
+    void OnDisable() => gameInput.Disable();
+    void OnDestroy() => gameInput.Dispose();
+
     private void Start()
     {
         maxConbo = GameManager.GetMaxConbo();
@@ -28,27 +38,10 @@ public class ResultManager : MonoBehaviour
 
     private void Update()
     {
-        ConboRank();
-        DefeatRank();
-        TimeRank();
-
-        resultScore = conboScore + defeatScore + timeScore;
-
-        if (resultScore >= 4)
+        StartCoroutine("DisplayResult");
+        if (gameInput.Menu.Submit.triggered && isFade)
         {
-            rankText.text = "C";
-        }
-        else if (resultScore >= 7)
-        {
-            rankText.text = "B";
-        }
-        else if (resultScore >= 10)
-        {
-            rankText.text = "A";
-        }
-        else
-        {
-            rankText.text = "S";
+            SceneManager.LoadScene("SelectScene");
         }
     }
 
@@ -115,5 +108,41 @@ public class ResultManager : MonoBehaviour
         {
             timeScore = 4;
         }
+    }
+
+    void ScoreRank()
+    {
+        resultScore = conboScore + defeatScore + timeScore;
+
+        if (resultScore >= 4)
+        {
+            rankText.text = "C";
+        }
+        else if (resultScore >= 7)
+        {
+            rankText.text = "B";
+        }
+        else if (resultScore >= 10)
+        {
+            rankText.text = "A";
+        }
+        else
+        {
+            rankText.text = "S";
+        }
+    }
+
+    IEnumerator DisplayResult()
+    {
+        yield return new WaitForSeconds(2.0f);
+        ConboRank();
+        yield return new WaitForSeconds(2.0f);
+        DefeatRank();
+        yield return new WaitForSeconds(2.0f);
+        TimeRank();
+        yield return new WaitForSeconds(2.0f);
+        ScoreRank();
+        yield return new WaitForSeconds(2.0f);
+        isFade = true;
     }
 }
