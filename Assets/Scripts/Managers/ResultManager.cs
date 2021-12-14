@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using TMPro;
 
 public class ResultManager : MonoBehaviour
@@ -23,6 +21,7 @@ public class ResultManager : MonoBehaviour
     float clearTime;
 
     bool isFade = false;
+    bool isEnabled = false;
 
     void Awake() => gameInput = new GameInput();
     void OnEnable() => gameInput.Enable();
@@ -39,9 +38,10 @@ public class ResultManager : MonoBehaviour
     private void Update()
     {
         StartCoroutine("DisplayResult");
-        if (gameInput.Menu.Submit.triggered && isFade)
+        if (gameInput.Menu.Submit.triggered && isEnabled && !isFade)
         {
-            SceneManager.LoadScene("SelectScene");
+            FadeManager.Instance.LoadScene("SelectScene", 1f);
+            isFade = true;
         }
     }
 
@@ -134,15 +134,15 @@ public class ResultManager : MonoBehaviour
 
     IEnumerator DisplayResult()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
         ConboRank();
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
         DefeatRank();
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
         TimeRank();
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
         ScoreRank();
-        yield return new WaitForSeconds(2.0f);
-        isFade = true;
+        yield return new WaitForSeconds(1.0f);
+        isEnabled = true;
     }
 }

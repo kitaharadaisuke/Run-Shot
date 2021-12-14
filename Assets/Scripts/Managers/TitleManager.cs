@@ -13,6 +13,7 @@ public class TitleManager : MonoBehaviour
 
     int selectNum = 0;
     float time;
+    bool isFade = false;
     bool isEnabled = true;
     bool canMove = true;
     bool canSelect = true;
@@ -34,9 +35,10 @@ public class TitleManager : MonoBehaviour
         {
             endPanel.SetActive(true);
         }
-        else if (gameInput.Menu.Anykey.triggered && isEnabled == true)
+        else if (gameInput.Menu.Anykey.triggered && isEnabled == true && !isFade)
         {
-            SceneManager.LoadScene("SelectScene");
+            FadeManager.Instance.LoadScene("SelectScene", 1f);
+            isFade = true;
         }
 
         if (endPanel.activeSelf == false)

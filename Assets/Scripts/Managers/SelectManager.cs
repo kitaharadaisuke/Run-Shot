@@ -15,6 +15,7 @@ public class SelectManager : MonoBehaviour
 
     int selectNum = 0;
 
+    bool isFade = false;
     bool canMove = true;
     bool canSelect = true;
 
@@ -64,22 +65,25 @@ public class SelectManager : MonoBehaviour
 
         else { canMove = true; }
 
-        if (gameInput.Menu.Submit.triggered)
+        if (gameInput.Menu.Submit.triggered && !isFade)
         {
             if (canSelect)
             {
                 switch (selectNum)
                 {
                     case 0: //ステージ1
-                        SceneManager.LoadScene("MainScene");
+                        FadeManager.Instance.LoadScene("MainScene", 1f);
+                        isFade = true;
                         stageNum = 0;
                         break;
                     case 1: //ステージ2
-                        SceneManager.LoadScene("MainScene");
+                        FadeManager.Instance.LoadScene("MainScene", 1f);
+                        isFade = true;
                         stageNum = 1;
                         break;
                     case 2: //ステージ3
-                        SceneManager.LoadScene("MainScene");
+                        FadeManager.Instance.LoadScene("MainScene", 1f);
+                        isFade = true;
                         stageNum = 2;
                         break;
                 }
