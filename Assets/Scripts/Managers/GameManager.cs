@@ -9,14 +9,22 @@ public class GameManager : MonoBehaviour
     [SerializeField] Slider playerHpBar;
     [SerializeField] TextMeshProUGUI[] overSelect;
     [SerializeField] TextMeshProUGUI conboText;
+    [SerializeField] TextMeshProUGUI timeText;
     [SerializeField] GameObject overPanel;
 
+    public static int maxConbo = 0;
+    public static int maxDefeat = 0;
+    public static float clearTime= 0;
+
     GameInput gameInput;
-    
+
     public int conbo = 0;
+    public int defeat = 0;
 
     int playerHp;
     int overSelectNum = 0;
+
+    float timer = 0;
 
     bool overCanMove = true;
     bool overCanSelect = true;
@@ -35,6 +43,11 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        //デバッグ用シーン遷移
+        if (gameInput.Menu.Open.triggered)
+        {
+            SceneManager.LoadScene("ResultScene");
+        }
         playerHp = player.hp;
         playerHpBar.value = playerHp;
         //ゲームオーバー時の処理
@@ -45,9 +58,15 @@ public class GameManager : MonoBehaviour
             overPanel.SetActive(true);
             GameOverMenu();
         }
+        numCount();
+
+        //タイマー
+        timer += Time.deltaTime;
 
         //コンボ数表示
         conboText.text = conbo.ToString("0");
+        //タイマー表示
+        timeText.text = timer.ToString("00.00");
     }
 
     void GameOverMenu()
@@ -92,5 +111,33 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    //リザルト用の管理
+    void numCount()
+    {
+        if(maxConbo <= conbo)
+        {
+            maxConbo = conbo;
+        }
+
+        if(maxDefeat <= defeat)
+        {
+            maxDefeat = defeat;
+        }
+        clearTime = timer;
+    }
+
+    public static int GetMaxConbo()
+    {
+        return maxConbo;
+    }
+    public static int GetMaxDefeat()
+    {
+        return maxDefeat;
+    }
+    public static float GetClearTime()
+    {
+        return clearTime;
     }
 }
