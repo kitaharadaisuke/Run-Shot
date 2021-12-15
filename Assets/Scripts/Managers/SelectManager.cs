@@ -5,12 +5,14 @@ using TMPro;
 
 public class SelectManager : MonoBehaviour
 {
+    [SerializeField] AudioClip selectSe;
     [SerializeField] GameObject[] selectPanel;
     [SerializeField] Image[] stageImage;
 
     public static int stageNum = 0;
 
     GameInput gameInput;
+    AudioSource audioSource;
     Image panelImage;
 
     int selectNum = 0;
@@ -26,6 +28,7 @@ public class SelectManager : MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -50,6 +53,7 @@ public class SelectManager : MonoBehaviour
                 if (selectNum < 2) { selectNum++; }
                 else { selectNum = 0; }
                 canMove = false;
+                audioSource.PlayOneShot(selectSe);
             }
         }
 
@@ -60,6 +64,7 @@ public class SelectManager : MonoBehaviour
                 if (selectNum > 0) { selectNum--; }
                 else { selectNum = 2; }
                 canMove = false;
+                audioSource.PlayOneShot(selectSe);
             }
         }
 

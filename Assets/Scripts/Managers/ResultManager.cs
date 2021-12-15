@@ -8,8 +8,10 @@ public class ResultManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI defeatText;
     [SerializeField] TextMeshProUGUI timeText;
     [SerializeField] TextMeshProUGUI rankText;
+    [SerializeField] AudioClip submitSe;
 
     GameInput gameInput;
+    AudioSource audioSource;
 
     int maxConbo;
     int maxDefeat;
@@ -30,24 +32,27 @@ public class ResultManager : MonoBehaviour
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         maxConbo = GameManager.GetMaxConbo();
         maxDefeat = GameManager.GetMaxDefeat();
         clearTime = GameManager.GetClearTime();
+        StartCoroutine("DisplayResult");
     }
 
     private void Update()
     {
-        StartCoroutine("DisplayResult");
         if (gameInput.Menu.Submit.triggered && isEnabled && !isFade)
         {
             FadeManager.Instance.LoadScene("SelectScene", 1f);
             isFade = true;
+            audioSource.PlayOneShot(submitSe);
         }
     }
 
     void ConboRank()
     {
-        conboText.text = maxConbo.ToString();
+        StartCoroutine(ScoreAnimation(maxConbo, 1, conboText));
+
         if (maxConbo >= 100)
         {
             conboScore = 4;
@@ -68,7 +73,7 @@ public class ResultManager : MonoBehaviour
 
     void DefeatRank()
     {
-        defeatText.text = maxDefeat.ToString();
+        StartCoroutine(ScoreAnimation(maxDefeat, 1, defeatText));
         defeatRate = maxDefeat / 54 * 100;
 
         if (defeatRate >= 90)
@@ -91,7 +96,7 @@ public class ResultManager : MonoBehaviour
 
     void TimeRank()
     {
-        timeText.text = clearTime.ToString();
+        StartCoroutine(ScoreAnimation(clearTime, 1, timeText));
         if (clearTime >= 300)
         {
             timeScore = 1;
@@ -144,5 +149,26 @@ public class ResultManager : MonoBehaviour
         ScoreRank();
         yield return new WaitForSeconds(1.0f);
         isEnabled = true;
+    }
+
+    //数字のカウントアップアニメーション
+    IEnumerator ScoreAnimation(float after, float time, TextMeshProUGUI text)
+    {
+        float befor = 0;
+
+        float elapsedTime = 0.0f;
+
+        while (elapsedTime < time)
+        {
+            float rate = elapsedTime / time;
+
+            text.text = (befor + (after - befor) * rate).ToString("f0");
+
+            elapsedTime += Time.deltaTime;
+
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        text.text = after.ToString("0");
     }
 }
