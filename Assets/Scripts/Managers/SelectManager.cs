@@ -33,6 +33,11 @@ public class SelectManager : MonoBehaviour
 
     void Update()
     {
+        if (gameInput.Menu.Open.triggered && !isFade)
+        {
+            FadeManager.Instance.LoadScene("TitleScene");
+            isFade = true;
+        }
         for (int i = 0; i < selectPanel.Length; i++)
         {
             if (i == selectNum)
