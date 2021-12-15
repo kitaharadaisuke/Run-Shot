@@ -1,13 +1,16 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using TMPro;
 
 public class TitleManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI[] endSelect;
+    [SerializeField] TextMeshProUGUI startText;
+    [SerializeField] AudioClip submitSe;
+    [SerializeField] AudioClip selectSe;
     [SerializeField] GameObject endPanel;
 
     GameInput gameInput;
+    AudioSource audioSource;
 
     public float speed = 1.0f;
 
@@ -26,17 +29,21 @@ public class TitleManager : MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         endPanel.SetActive(false);
     }
 
     void Update()
     {
+        startText.color = GetAlphaColor(startText.color);
         if (gameInput.Menu.Open.triggered)
         {
+            audioSource.PlayOneShot(submitSe);
             endPanel.SetActive(true);
         }
         else if (gameInput.Menu.Anykey.triggered && isEnabled == true && !isFade)
         {
+            audioSource.PlayOneShot(submitSe);
             FadeManager.Instance.LoadScene("SelectScene", 1f);
             isFade = true;
         }
@@ -64,6 +71,7 @@ public class TitleManager : MonoBehaviour
                     if (selectNum < 1) { selectNum++; }
                     else { selectNum = 0; }
                     canMove = false;
+                    audioSource.PlayOneShot(selectSe);
                 }
             }
             else if (gameInput.Menu.Up.triggered)
@@ -73,6 +81,7 @@ public class TitleManager : MonoBehaviour
                     if (selectNum > 0) { selectNum--; }
                     else { selectNum = 1; }
                     canMove = false;
+                    audioSource.PlayOneShot(selectSe);
                 }
             }
             else { canMove = true; }
@@ -85,9 +94,11 @@ public class TitleManager : MonoBehaviour
                     {
                         case 0: //‚¢‚¢‚¦
                             endPanel.SetActive(false);
+                            audioSource.PlayOneShot(submitSe);
                             isEnabled = true;
                             break;
                         case 1: //‚Í‚¢
+                            audioSource.PlayOneShot(submitSe);
                             QuitGame();
                             break;
                     }

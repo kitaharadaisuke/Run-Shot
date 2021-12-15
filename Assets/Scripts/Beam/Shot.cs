@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class Shot : MonoBehaviour
 {
+    [SerializeField] AudioClip beamSe;
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject straight;
     [SerializeField] GameObject diffusion;
@@ -13,6 +14,7 @@ public class Shot : MonoBehaviour
 
     GameObject[] enemyObj;
     GameInput gameInput;
+    AudioSource audioSource;
     PlayerController playerController;
 
     int changenum;
@@ -24,6 +26,7 @@ public class Shot : MonoBehaviour
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         straight.SetActive(false);
         diffusion.SetActive(false);
         dome.SetActive(false);
@@ -63,6 +66,7 @@ public class Shot : MonoBehaviour
                     GameObject bullets = Instantiate(bullet) as GameObject;
                     bullets.transform.position = muzzle.position;
                     playerController.bg -= 3;
+                    audioSource.PlayOneShot(beamSe);
                 }
             }
         }

@@ -14,6 +14,8 @@ public class BossController : MonoBehaviour
 
     int hp;
 
+    bool isFade = false;
+
     void Start()
     {
         gm = GameObject.Find("GameManager");
@@ -25,10 +27,11 @@ public class BossController : MonoBehaviour
     {
         //hpÉoÅ[
         hpBar.value = hp;
-        if (hp <= 0)
+        if (hp <= 0 && !isFade)
         {
             Destroy(this.gameObject);
-            //SceneManager.LoadScene("ResultScene");
+            FadeManager.Instance.LoadScene("ResultScene");
+            isFade = true;
         }
     }
 

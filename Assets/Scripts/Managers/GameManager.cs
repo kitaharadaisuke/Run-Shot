@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using TMPro;
 
 public class GameManager : MonoBehaviour
@@ -11,6 +10,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI[] overSelect;
     [SerializeField] TextMeshProUGUI conboText;
     [SerializeField] TextMeshProUGUI timeText;
+    [SerializeField] AudioClip selectSe;
+    [SerializeField] AudioClip submitSe;
     [SerializeField] GameObject overPanel;
     [SerializeField] GameObject startPanel;
 
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
     public static float clearTime = 0;
 
     GameInput gameInput;
+    AudioSource audioSource;
 
     public int conbo = 0;
     public int defeat = 0;
@@ -39,20 +41,15 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        //Cursor.visible = false;
-        //Cursor.lockState = CursorLockMode.Confined;
+        audioSource = GetComponent<AudioSource>();
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
         overPanel.SetActive(false);
         StartCoroutine("GameStart");
     }
 
     void Update()
     {
-        //デバッグ用シーン遷移
-        if (gameInput.Menu.Open.triggered && !isFade)
-        {
-            FadeManager.Instance.LoadScene("ResultScene", 1f);
-            isFade = true;
-        }
         playerHp = player.hp;
         playerHpBar.value = playerHp;
         //ゲームオーバー時の処理
@@ -91,6 +88,7 @@ public class GameManager : MonoBehaviour
                 if (overSelectNum < 1) { overSelectNum++; }
                 else { overSelectNum = 0; }
                 overCanMove = false;
+                audioSource.PlayOneShot(selectSe);
             }
         }
         else if (gameInput.Menu.Down.triggered)
@@ -100,6 +98,7 @@ public class GameManager : MonoBehaviour
                 if (overSelectNum > 0) { overSelectNum--; }
                 else { overSelectNum = 1; }
                 overCanMove = false;
+                audioSource.PlayOneShot(selectSe);
             }
         }
         else { overCanMove = true; }
@@ -113,10 +112,12 @@ public class GameManager : MonoBehaviour
                     case 0: //リトライ
                         FadeManager.Instance.LoadScene("MainScene", 1f);
                         isFade = true;
+                        audioSource.PlayOneShot(submitSe);
                         break;
                     case 1: //セレクトシーンに戻る
                         FadeManager.Instance.LoadScene("SelectScene", 1f);
                         isFade = true;
+                        audioSource.PlayOneShot(submitSe);
                         break;
                 }
             }
