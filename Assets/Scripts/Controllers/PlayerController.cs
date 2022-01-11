@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Slider staminaBar;
     [SerializeField] Slider beamBar;
     [SerializeField] float upForce = 0f;
+   
+   [System.NonSerialized] public Animator anm;
+   [System.NonSerialized] public BoxCollider bc;
 
     GameInput gameInput;
     GameManager gameManager;
@@ -37,12 +40,12 @@ public class PlayerController : MonoBehaviour
     float inputH;
     float inputV;
 
-
     void Start()
     {
         gm = GameObject.Find("GameManager");
         gameManager = gm.GetComponent<GameManager>();
         rb = GetComponent<Rigidbody>();
+        bc = GetComponent<BoxCollider>();
         //プレイヤーデータ
         speed = player.Speed;
         startSpeed = player.Speed;
@@ -55,6 +58,7 @@ public class PlayerController : MonoBehaviour
         bossNAttack = enemies[2].NormalA;
         bossRAttack = enemies[2].RangeA;
         bossPAttack = enemies[2].PowerA;
+        anm = GetComponent<Animator>();
     }
 
     void Update()
@@ -74,8 +78,10 @@ public class PlayerController : MonoBehaviour
 
         if (moveForward != Vector3.zero)
         {
+            anm.SetBool("Walk", true);
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveForward), 0.1f);
         }
+        else { anm.SetBool("Walk", false); }
 
         //ダッシュ
         if (moveInput.y >= 0.7 || moveInput.y <= -0.7 || moveInput.x >= 1 || moveInput.x <= -1)
@@ -84,11 +90,13 @@ public class PlayerController : MonoBehaviour
             {
                 if (stamina >= 1)
                 {
+                    anm.SetBool("Run", true);
                     speed = speed * 2;
                 }
             }
             else if (gameInput.Player.UnDash.triggered || stamina <= 1)
             {
+                anm.SetBool("Run", false);
                 speed = startSpeed;
             }
         }
@@ -99,15 +107,18 @@ public class PlayerController : MonoBehaviour
         {
             if (gameInput.Player.Jump.triggered)
             {
+                anm.SetBool("Jump", true);
                 jumpCount++;
                 rb.AddForce(Vector3.up * upForce);
             }
+            else { anm.SetBool("Jump", false); }
         }
         //回避
         if (gameInput.Player.Avoid.triggered)
         {
             if (stamina >= 10)
             {
+                anm.SetBool("Avoid", true);
                 StartCoroutine("AvoidCoroutine");
                 stamina -= 10;
             }
@@ -178,6 +189,7 @@ public class PlayerController : MonoBehaviour
         //近接敵
         if (collision.gameObject.CompareTag("Enemy"))
         {
+        anm.SetBool("Damage", true);
             gameManager.conbo = 0;
             hp -= shortAttack;
             StartCoroutine("DamageCoroutine");
@@ -185,6 +197,7 @@ public class PlayerController : MonoBehaviour
         //遠距離敵
         if (collision.gameObject.CompareTag("EnemyBullet"))
         {
+            anm.SetBool("Damage", true);
             gameManager.conbo = 0;
             hp -= longAttack;
             StartCoroutine("DamageCoroutine");
@@ -192,6 +205,7 @@ public class PlayerController : MonoBehaviour
         //ボス通常
         if (collision.gameObject.CompareTag("BossNAttack"))
         {
+            anm.SetBool("Damage", true);
             gameManager.conbo = 0;
             hp -= bossNAttack;
             StartCoroutine("DamageCoroutine");
@@ -199,6 +213,7 @@ public class PlayerController : MonoBehaviour
         //ボス範囲
         if (collision.gameObject.CompareTag("BossRAttack"))
         {
+            anm.SetBool("Damage", true);
             gameManager.conbo = 0;
             hp -= bossRAttack;
             StartCoroutine("DamageCoroutine");
@@ -206,12 +221,11 @@ public class PlayerController : MonoBehaviour
         //ボス威力
         if (collision.gameObject.CompareTag("BossPAttack"))
         {
+            anm.SetBool("Damage", true);
             gameManager.conbo = 0;
             hp -= bossPAttack;
             StartCoroutine("DamageCoroutine");
         }
-
-
         //接地判定
         if (collision.gameObject.CompareTag("Ground"))
         {
@@ -226,6 +240,7 @@ public class PlayerController : MonoBehaviour
         this.gameObject.layer = LayerMask.NameToLayer("PlayerDamage");
         yield return new WaitForSeconds(0.5f);
         this.gameObject.layer = LayerMask.NameToLayer("Player");
+        anm.SetBool("Damage", false);
     }
 
     //回避無敵時間

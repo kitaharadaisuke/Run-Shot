@@ -59,6 +59,8 @@ public class GameManager : MonoBehaviour
             player.enabled = false;
             overPanel.SetActive(true);
             GameOverMenu();
+            player.anm.SetBool("Death", true);
+            player.bc.center = new Vector3(0f, 0.15f, 0f);
         }
         numCount();
 
