@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class ResultManager : MonoBehaviour
@@ -7,7 +8,10 @@ public class ResultManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI conboText;
     [SerializeField] TextMeshProUGUI defeatText;
     [SerializeField] TextMeshProUGUI timeText;
-    [SerializeField] TextMeshProUGUI rankText;
+    [SerializeField] Image rankS;
+    [SerializeField] Image rankA;
+    [SerializeField] Image rankB;
+    [SerializeField] Image rankC;
     [SerializeField] AudioClip submitSe;
 
     GameInput gameInput;
@@ -37,6 +41,10 @@ public class ResultManager : MonoBehaviour
         maxDefeat = GameManager.GetMaxDefeat();
         clearTime = GameManager.GetClearTime();
         StartCoroutine("DisplayResult");
+        rankS.enabled = false;
+        rankA.enabled = false;
+        rankB.enabled = false;
+        rankC.enabled = false;
     }
 
     private void Update()
@@ -121,19 +129,19 @@ public class ResultManager : MonoBehaviour
 
         if (resultScore >= 4)
         {
-            rankText.text = "C";
+            rankC.enabled = true;
         }
         else if (resultScore >= 7)
         {
-            rankText.text = "B";
+            rankB.enabled = true;
         }
         else if (resultScore >= 10)
         {
-            rankText.text = "A";
+            rankA.enabled = true;
         }
         else
         {
-            rankText.text = "S";
+            rankS.enabled = true;
         }
     }
 
