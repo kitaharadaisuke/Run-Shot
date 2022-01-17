@@ -36,7 +36,7 @@ public class TitleManager : MonoBehaviour
     void Update()
     {
         startText.color = GetAlphaColor(startText.color);
-        if (gameInput.Menu.Open.triggered)
+        if (gameInput.Menu.Open.triggered && !isFade)
         {
             audioSource.PlayOneShot(submitSe);
             endPanel.SetActive(true);
