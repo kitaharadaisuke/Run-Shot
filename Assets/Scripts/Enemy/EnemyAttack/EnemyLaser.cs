@@ -36,7 +36,7 @@ public class EnemyLaser : MonoBehaviour
         period -= Time.deltaTime;
         velocity += acceleration * Time.deltaTime;
 
-        Invoke("BulletDestroy", 2.5f);
+        Invoke("BulletDestroy", 4.0f);
     }
 
     void FixedUpdate()

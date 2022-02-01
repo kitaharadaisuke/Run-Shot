@@ -127,7 +127,7 @@ public class PlayerController : MonoBehaviour
         //スタミナ消費
         if (speed > startSpeed)
         {
-            if (stamina >= 0)
+            if (stamina >= 1)
             {
                 stamina -= 0.1f;
             }

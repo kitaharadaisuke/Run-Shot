@@ -19,6 +19,9 @@ public class Shot : MonoBehaviour
 
     int changenum;
 
+    //特殊技クールタイム用
+    bool isAttackable = false;
+
     private void Awake() => gameInput = new GameInput();
     private void OnEnable() => gameInput.Enable();
     private void OnDisable() => gameInput.Disable();
@@ -71,7 +74,7 @@ public class Shot : MonoBehaviour
             }
         }
 
-        if (playerController.bg >= 5)
+        if (playerController.bg >= 5 && !isAttackable)
         {
             if (gameInput.Player.SpecialAttack.triggered)
             {
@@ -97,22 +100,28 @@ public class Shot : MonoBehaviour
 
     IEnumerator StraightBeam()
     {
+        isAttackable = true;
         straight.SetActive(true);
         yield return new WaitForSeconds(2.0f);
+        isAttackable = false;
         straight.SetActive(false);
     }
 
     IEnumerator DiffusionBeam()
     {
+        isAttackable = true;
         diffusion.SetActive(true);
         yield return new WaitForSeconds(2.0f);
+        isAttackable = false;
         diffusion.SetActive(false);
     }
 
     IEnumerator DomeBeam()
     {
         dome.SetActive(true);
+        isAttackable = true;
         yield return new WaitForSeconds(2.0f);
+        isAttackable = false;
         dome.SetActive(false);
     }
 }

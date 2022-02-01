@@ -23,7 +23,6 @@ public class ResultManager : MonoBehaviour
     int defeatScore = 0;
     int timeScore;
     int resultScore;
-    int defeatRate;
     float clearTime;
 
     bool isFade = false;
@@ -57,7 +56,7 @@ public class ResultManager : MonoBehaviour
         }
     }
 
-    void ConboRank()
+    int ConboRank()
     {
         StartCoroutine(ScoreAnimation(maxConbo, 1, conboText));
 
@@ -77,32 +76,35 @@ public class ResultManager : MonoBehaviour
         {
             conboScore = 1;
         }
+
+        return conboScore;
     }
 
-    void DefeatRank()
+    int DefeatRank()
     {
         StartCoroutine(ScoreAnimation(maxDefeat, 1, defeatText));
-        defeatRate = maxDefeat / 54 * 100;
-
-        if (defeatRate >= 90)
+        
+        if (maxDefeat >= 30)
         {
             defeatScore = 4;
         }
-        else if (defeatRate >= 70)
+        else if (maxDefeat >= 20)
         {
             defeatScore = 3;
         }
-        else if (maxConbo >= 50)
+        else if (maxDefeat >= 10)
         {
             defeatScore = 2;
         }
         else
         {
-            conboScore = 1;
+            defeatScore = 1;
         }
+
+        return defeatScore;
     }
 
-    void TimeRank()
+    int TimeRank()
     {
         StartCoroutine(ScoreAnimation(clearTime, 1, timeText));
         if (clearTime >= 300)
@@ -121,21 +123,26 @@ public class ResultManager : MonoBehaviour
         {
             timeScore = 4;
         }
+
+        return timeScore;
     }
 
     void ScoreRank()
     {
+        conboScore = ConboRank();
+        defeatScore = DefeatRank();
+        timeScore = TimeRank();
         resultScore = conboScore + defeatScore + timeScore;
 
-        if (resultScore >= 4)
+        if (resultScore <= 4)
         {
             rankC.enabled = true;
         }
-        else if (resultScore >= 7)
+        else if (resultScore <= 7)
         {
             rankB.enabled = true;
         }
-        else if (resultScore >= 10)
+        else if (resultScore <= 10)
         {
             rankA.enabled = true;
         }
@@ -157,6 +164,11 @@ public class ResultManager : MonoBehaviour
         ScoreRank();
         yield return new WaitForSeconds(1.0f);
         isEnabled = true;
+
+        Debug.Log(resultScore);
+        Debug.Log(conboScore);
+        Debug.Log(defeatScore);
+        Debug.Log(timeScore);
     }
 
     //数字のカウントアップアニメーション

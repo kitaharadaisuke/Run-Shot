@@ -17,7 +17,7 @@ MonoBehaviour:
   stamina: 100
   speed: 10
   dash: 2
-  normalA: 5
+  normalA: 100
   specialA1: 50
   specialA2: 10
   specialA3: 5
