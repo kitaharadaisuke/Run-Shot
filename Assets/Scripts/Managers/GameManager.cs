@@ -59,8 +59,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(player.enabled);
-        Debug.Log(moveTime);
         playerHp = player.hp;
         playerHpBar.value = playerHp;
         //ゲームオーバー時の処理

@@ -65,7 +65,7 @@ public class EnemyController : MonoBehaviour
         if (other.gameObject.CompareTag("Dome"))
         {
             gameManager.conbo++;
-            hp -= 5;
+            hp -= 10;
         }
     }
 

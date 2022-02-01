@@ -696,7 +696,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &182258941
 GameObject:
@@ -743,7 +743,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &224960766
 GameObject:
@@ -3942,7 +3942,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4001915619365847468, guid: 02e98a0c4c0d99544875b4489762df91, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
-      value: 10
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 4001915620073545609, guid: 02e98a0c4c0d99544875b4489762df91, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3982,7 +3982,7 @@ PrefabInstance:
       objectReference: {fileID: 1345148994}
     - target: {fileID: 4001915620913397827, guid: 02e98a0c4c0d99544875b4489762df91, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4001915620913397827, guid: 02e98a0c4c0d99544875b4489762df91, type: 3}
       propertyPath: m_LocalPosition.x
