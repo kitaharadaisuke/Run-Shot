@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Shot : MonoBehaviour
 {
@@ -43,7 +42,6 @@ public class Shot : MonoBehaviour
     void Update()
     {
         enemyObj = GameObject.FindGameObjectsWithTag("Enemy");
-        Debug.Log(changenum);
         //“ÁêUŒ‚Ø‚è‘Ö‚¦
         if (gameInput.Player.Change.triggered)
         {
