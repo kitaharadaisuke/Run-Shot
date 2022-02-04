@@ -4,15 +4,16 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] GameObject dashEffect;
     [SerializeField] PlayerData player;
     [SerializeField] EnemyData[] enemies;
     [SerializeField] Slider hpBar;
     [SerializeField] Slider staminaBar;
     [SerializeField] Slider beamBar;
     [SerializeField] float upForce = 0f;
-   
-   [System.NonSerialized] public Animator anm;
-   [System.NonSerialized] public BoxCollider bc;
+
+    [System.NonSerialized] public Animator anm;
+    [System.NonSerialized] public BoxCollider bc;
 
     GameInput gameInput;
     GameManager gameManager;
@@ -91,12 +92,14 @@ public class PlayerController : MonoBehaviour
                 if (stamina >= 1)
                 {
                     anm.SetBool("Run", true);
+                    dashEffect.SetActive(true);
                     speed = speed * 2;
                 }
             }
             else if (gameInput.Player.UnDash.triggered || stamina <= 1)
             {
                 anm.SetBool("Run", false);
+                dashEffect.SetActive(false);
                 speed = startSpeed;
             }
         }
@@ -189,7 +192,7 @@ public class PlayerController : MonoBehaviour
         //�ߐړG
         if (collision.gameObject.CompareTag("Enemy"))
         {
-        anm.SetBool("Damage", true);
+            anm.SetBool("Damage", true);
             gameManager.conbo = 0;
             hp -= shortAttack;
             StartCoroutine("DamageCoroutine");

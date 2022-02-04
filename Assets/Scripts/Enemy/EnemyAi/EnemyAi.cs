@@ -4,6 +4,7 @@ using UnityEngine.AI;
 
 public class EnemyAi : MonoBehaviour
 {
+    Animator anm;
 
     float coolTime;
     float attackTime;
@@ -30,6 +31,7 @@ public class EnemyAi : MonoBehaviour
         coolTime = 0;
         agent = this.gameObject.GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
+        anm = GetComponent<Animator>();
         action = Action.IDOL;
         attackRange = transform.Find("AttackRange");
     }
@@ -41,6 +43,9 @@ public class EnemyAi : MonoBehaviour
         {
             case Action.IDOL:
                 action = Action.MOVE;
+                anm.SetBool("Idol", true);
+                anm.SetBool("Walk", false);
+                anm.SetBool("Attack", false);
                 break;
             case Action.WAIT:
                 attackRange.gameObject.SetActive(false);
@@ -50,11 +55,17 @@ public class EnemyAi : MonoBehaviour
                     action = Action.MOVE;
                     coolTime = 0;
                 }
+                anm.SetBool("Idol", true);
+                anm.SetBool("Walk", false);
+                anm.SetBool("Attack", false);
                 break;
             case Action.MOVE:
                 attackRange.gameObject.SetActive(true);
                 agent.isStopped = false;
                 agent.destination = target.position;
+                anm.SetBool("Walk", true);
+                anm.SetBool("Idol", false);
+                anm.SetBool("Attack", false);
                 break;
             case Action.ATTACK:
                 agent.isStopped = true;
@@ -64,6 +75,9 @@ public class EnemyAi : MonoBehaviour
                     action = Action.WAIT;
                     attackTime = 0;
                 }
+                anm.SetBool("Attack", true);
+                anm.SetBool("Walk", false);
+                anm.SetBool("Idol", false);
                 break;
         }
     }

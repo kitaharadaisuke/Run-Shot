@@ -9,7 +9,9 @@ public class Shot : MonoBehaviour
     [SerializeField] GameObject straight;
     [SerializeField] GameObject diffusion;
     [SerializeField] GameObject dome;
-    [SerializeField] Text text;
+    [SerializeField] GameObject straightUI;
+    [SerializeField] GameObject diffusionUI;
+    [SerializeField] GameObject domeUI;
     [SerializeField] Transform muzzle;
 
     GameObject[] enemyObj;
@@ -33,27 +35,36 @@ public class Shot : MonoBehaviour
         straight.SetActive(false);
         diffusion.SetActive(false);
         dome.SetActive(false);
+        straightUI.SetActive(true);
+        diffusionUI.SetActive(false);
+        domeUI.SetActive(false);
         playerController = this.gameObject.GetComponent<PlayerController>();
     }
     void Update()
     {
         enemyObj = GameObject.FindGameObjectsWithTag("Enemy");
-
+        Debug.Log(changenum);
         //ì¡éÍçUåÇêÿÇËë÷Ç¶
         if (gameInput.Player.Change.triggered)
         {
             switch (changenum)
             {
                 case 0:
-                    text.text = "DiffusionBeam";
+                    straightUI.SetActive(false);
+                    diffusionUI.SetActive(true);
+                    domeUI.SetActive(false);
                     changenum++;
                     break;
                 case 1:
-                    text.text = "DomeBeam";
+                    straightUI.SetActive(false);
+                    diffusionUI.SetActive(false);
+                    domeUI.SetActive(true);
                     changenum++;
                     break;
                 case 2:
-                    text.text = "StraightBeam";
+                    straightUI.SetActive(true);
+                    diffusionUI.SetActive(false);
+                    domeUI.SetActive(false);
                     changenum = 0;
                     break;
             }
